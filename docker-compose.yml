@@ -1,0 +1,22 @@
+version: '3'
+services:
+        web:
+                build:
+                        context: ./html
+                        args:
+                                - DBHOST=sql
+                                - DBNAME=$DBNAME
+                                - DBUSERNAME=root
+                                - DBPASSWORD=$DBPASSWORD
+                ports:
+                        - "80:80"
+                links:
+                        - sql
+        sql:
+                build:
+                        context: ./sql
+                        args:
+                                - DBPASSWORD=$DBPASSWORD
+                                - DBNAME=$DBNAME
+                expose:
+                        - "3306"
