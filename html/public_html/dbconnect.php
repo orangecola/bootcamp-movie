@@ -1,9 +1,9 @@
 <?php
 
-  $DB_host = "localhost";
-  $DB_user = "root";
-  $DB_pass = "";
-  $DB_name = "assignment3schema";
+  $DB_host = getenv("HOSTNAME");
+  $DB_user = getenv("USERNAME");
+  $DB_pass = getenv("PASSWORD");
+  $DB_name = getenv("DB_NAME");
   
   $MySQLiconn = new MySQLi($DB_host,$DB_user,$DB_pass,$DB_name);
     
