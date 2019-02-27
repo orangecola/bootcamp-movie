@@ -1,4 +1,8 @@
-
+<?php
+session_start();
+#include 'cmsheader.inc';
+include_once '../dbconnect.php';
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -18,9 +22,6 @@
             }
         </script>
         <?php
-        session_start();
-        #include 'cmsheader.inc';
-        include_once '../dbconnect.php';
         echo"</br>";
         //Doing of Editing/updating Promo
         if (isset($_POST['id'])) {

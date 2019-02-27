@@ -1,33 +1,31 @@
-    <?php
-        include 'header.inc';
-        include_once 'dbconnect.php';
-        //if(isset($_POST['submit'])){
-        $check_list = $_SESSION['check_list'];
-       // $_SESSION['check_list']=$check_list;
+<?php
+    include 'header.inc';
+    include_once 'dbconnect.php';
+    //if(isset($_POST['submit'])){
+    $check_list = $_SESSION['check_list'];
+    // $_SESSION['check_list']=$check_list;
 
-        $PaymentMode = $_SESSION['PaymentMode'];
-        //$_SESSION['PaymentMode']=$PaymentMode;
+    $PaymentMode = $_SESSION['PaymentMode'];
+    //$_SESSION['PaymentMode']=$PaymentMode;
 
-        $showInfoID = $_SESSION['show_id'];
+    $showInfoID = $_SESSION['show_id'];
 
-        ?>
-        <?php
-            $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
-            $showinfo = mysqli_fetch_assoc($result);
-            //echo count($showinfo);
-            //echo '<br>';
-            //$movieID = $showinfo['movie_id'];
-            $result2 = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $showinfo['movie_id'] . "'");
-            $result3 = mysqli_query($MySQLiconn, "SELECT * FROM `cinema` WHERE cinema_id ='" . $showinfo['cinema_id'] . "'");
-            $movie = mysqli_fetch_assoc($result2);
-            $cinema = mysqli_fetch_assoc($result3);
+    $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
+    $showinfo = mysqli_fetch_assoc($result);
+    //echo count($showinfo);
+    //echo '<br>';
+    //$movieID = $showinfo['movie_id'];
+    $result2 = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $showinfo['movie_id'] . "'");
+    $result3 = mysqli_query($MySQLiconn, "SELECT * FROM `cinema` WHERE cinema_id ='" . $showinfo['cinema_id'] . "'");
+    $movie = mysqli_fetch_assoc($result2);
+    $cinema = mysqli_fetch_assoc($result3);
 
-             $PaymentModeValue = array(
-                    "Standard Price - $12.50" => 12.50,
-                    "Visa Checkout- $12.00" => 12,
-                    "DBS/POSB Credit & Debit - $7.50" => 7.50
-                );
-        ?>
+     $PaymentModeValue = array(
+            "Standard Price - $12.50" => 12.50,
+            "Visa Checkout- $12.00" => 12,
+            "DBS/POSB Credit & Debit - $7.50" => 7.50
+        );
+?>
     <ul class="breadcrumb">
             <li><a href="index.php" class="activeLink">Home</a> <span class="divider"></span></li>
             <li><a href="MainMovie.php" class="activeLink">Movies</a> <span class="divider"></span></li>

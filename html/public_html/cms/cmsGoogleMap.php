@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+<?php
+    session_start();
+    include_once ("../dbconnect.php");
+
+    $rec2 = "SELECT cinema_googleMap FROM cinema where cinema_id =".$_GET['id'];
+            $records2 = $MySQLiconn->query($rec2);
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -16,15 +23,6 @@
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/scripts.js"></script>
-
-    
-    <?php 
-        session_start();
-        include_once ("../dbconnect.php");
-        
-        $rec2 = "SELECT cinema_googleMap FROM cinema where cinema_id =".$_GET['id'];
-                $records2 = $MySQLiconn->query($rec2);
-    ?>
 	<div class="container google">
 		<div class="col-xs-9 google">
     <?php

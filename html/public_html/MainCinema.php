@@ -1,8 +1,8 @@
-        <?php
-        include 'header.inc';
-        include_once 'dbconnect.php';
-        $resultCinema = mysqli_query($MySQLiconn, "SELECT * FROM cinema");
-        ?>
+<?php
+include 'header.inc';
+include_once 'dbconnect.php';
+$resultCinema = mysqli_query($MySQLiconn, "SELECT * FROM cinema");
+?>
         <ul class="breadcrumb">
             <li><a href="index.php" class="activeLink">Home</a> <span class="divider"></span></li>
             <li class="active">Movies</li>

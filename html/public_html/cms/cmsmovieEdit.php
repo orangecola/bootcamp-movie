@@ -1,19 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>CMS Movie</title>
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/style.css" rel="stylesheet">
-	<link href="../images/gv32x32.ico" rel="shortcut icon" />
-</head>
-<body>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/scripts.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-<?php 
+<?php
 session_start();
 include_once ("../dbconnect.php");
 ?>
@@ -42,6 +27,20 @@ if ($result = $MySQLiconn->query($sql)) {
 }
 mysqli_free_result($result);
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CMS Movie</title>
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="../images/gv32x32.ico" rel="shortcut icon" />
+</head>
+<body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/scripts.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <div class="container-fluid">
 	<div class="row">
@@ -164,7 +163,7 @@ mysqli_free_result($result);
 			</div>
 			</form>
 			<br /><br /><br /><br />
-		
+
 		<?php include 'cmsfooter.inc';?>
 		</div>
 	</div>

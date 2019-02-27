@@ -1,4 +1,3 @@
-<!-- For updating Records -->
 <?php
     // Declare some variable for error message
     $error=false;
@@ -168,7 +167,7 @@
         header("Location: cmsCinema.php");
     }
 ?>
-
+<!-- For updating Records -->
 <html>
     <html lang="en">
     <head>

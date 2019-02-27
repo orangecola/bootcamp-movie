@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once ("../dbconnect.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,10 +17,6 @@
 <script src="../js/scripts.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<?php
-session_start();
-include_once ("../dbconnect.php");
-?>
 
 <div class="container-fluid">
 	<div class="row">

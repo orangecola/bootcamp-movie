@@ -1,11 +1,10 @@
-
-		<?php
-		session_start();
-		include_once '../dbconnect.php';
-		$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
-		$userRow = $resultUser->fetch_array();
-		include 'cmsheader.inc';
-		?>
+<?php
+session_start();
+include_once '../dbconnect.php';
+$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
+$userRow = $resultUser->fetch_array();
+include 'cmsheader.inc';
+?>
     <!DOCTYPE html>
     <!--
     To change this license header, choose License Headers in Project Properties.

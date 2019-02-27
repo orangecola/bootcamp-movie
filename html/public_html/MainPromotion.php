@@ -1,8 +1,8 @@
-        <?php
-        include 'header.inc';
-        include_once 'dbconnect.php';
-        $resultPromotion = mysqli_query($MySQLiconn, "SELECT * FROM promotioninfo");
-        ?>
+<?php
+include 'header.inc';
+include_once 'dbconnect.php';
+$resultPromotion = mysqli_query($MySQLiconn, "SELECT * FROM promotioninfo");
+?>
         <ul class="breadcrumb">
             <li><a href="index.php" class="activeLink">Home</a> <span class="divider"></span></li>
             <li class="active">Promotions</li>

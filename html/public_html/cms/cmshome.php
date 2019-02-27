@@ -1,23 +1,22 @@
-
-        <?php
-            session_start();
-            include_once ("../dbconnect.php");
-            if(!isset($_SESSION['user']))
-            {
-                header("Location: index.php");
-            }
-            //execute the SQL query and return records
-            $resultUser = $MySQLiconn->query("SELECT  ( SELECT COUNT(*) FROM   user_list ) AS numUser,
-            (SELECT COUNT(*) FROM   user_list where user_role = 'admin') AS numUserAdmin,
-            (SELECT COUNT(*) FROM   user_list where user_role = 'user') AS numUserReg FROM dual");
-            $resultMovie = $MySQLiconn->query("select count(*) as numMovie from movie");
-            $resultPromotion = $MySQLiconn->query("select count(*) as numPromotion from promotion");
-            $resultCinema = $MySQLiconn->query("select count(*) as numCinema from cinema");
-            $resultBooking = $MySQLiconn->query("select count(*) as numBooking from Booking");
-			$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
-            $userRow = $resultUser->fetch_array();
-            $resultCount = $MySQLiconn->query("select count(*) from cinema");
-        ?>
+<?php
+    session_start();
+    include_once ("../dbconnect.php");
+    if(!isset($_SESSION['user']))
+    {
+        header("Location: index.php");
+    }
+    //execute the SQL query and return records
+    $resultUser = $MySQLiconn->query("SELECT  ( SELECT COUNT(*) FROM   user_list ) AS numUser,
+    (SELECT COUNT(*) FROM   user_list where user_role = 'admin') AS numUserAdmin,
+    (SELECT COUNT(*) FROM   user_list where user_role = 'user') AS numUserReg FROM dual");
+    $resultMovie = $MySQLiconn->query("select count(*) as numMovie from movie");
+    $resultPromotion = $MySQLiconn->query("select count(*) as numPromotion from promotion");
+    $resultCinema = $MySQLiconn->query("select count(*) as numCinema from cinema");
+    $resultBooking = $MySQLiconn->query("select count(*) as numBooking from Booking");
+    $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
+    $userRow = $resultUser->fetch_array();
+    $resultCount = $MySQLiconn->query("select count(*) from cinema");
+?>
 <!doctype html>
    <html lang="en">
    <head>

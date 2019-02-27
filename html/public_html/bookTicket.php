@@ -1,25 +1,25 @@
-        <?php
-        include 'header.inc';
-        if (!isset($_SESSION['user'])) {
-            header("Location: MainMovie.php");
-        }
-        include_once 'dbconnect.php';
-        $showInfoID = $_GET['q'];
-        echo $showInfoID;
-        $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
-        $showinfo = mysqli_fetch_assoc($result);
+<?php
+include 'header.inc';
+if (!isset($_SESSION['user'])) {
+    header("Location: MainMovie.php");
+}
+include_once 'dbconnect.php';
+$showInfoID = $_GET['q'];
+echo $showInfoID;
+$result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
+$showinfo = mysqli_fetch_assoc($result);
 
-        $result2 = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $showinfo['movie_id'] . "'");
-        $result3 = mysqli_query($MySQLiconn, "SELECT * FROM `cinema` WHERE cinema_id ='" . $showinfo['cinema_id'] . "'");
-        $movie = mysqli_fetch_assoc($result2);
-        $cinema = mysqli_fetch_assoc($result3);
+$result2 = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $showinfo['movie_id'] . "'");
+$result3 = mysqli_query($MySQLiconn, "SELECT * FROM `cinema` WHERE cinema_id ='" . $showinfo['cinema_id'] . "'");
+$movie = mysqli_fetch_assoc($result2);
+$cinema = mysqli_fetch_assoc($result3);
 
 //        $sqlTime = "Select * from showinfo where movie_id='".$showinfo['movie_id']."' and cinema_id='".$showinfo['cinema_id']."' and showInfo_date='".$date['showInfo_date']."'";
 //        $resultTime = mysql_query($sqlTime);
 //        while ($time = mysql_fetch_assoc($resultTime)) {
 //            echo $time['showInfo_id'];
 //        }
-        ?>
+?>
         <script>
             window.onload=function(){
               document.getElementById("StartBooking").style.display='none';

@@ -1,12 +1,12 @@
-        <?php
-        include 'header.inc';
-        if (isset($_GET['q']) == "") {
-            header("Location: MainMovie.php");
-        }
-        include_once 'dbconnect.php';
-        $result = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $_GET['q'] . "'");
-        $movie = mysqli_fetch_assoc($result);
-        ?>
+<?php
+include 'header.inc';
+if (isset($_GET['q']) == "") {
+    header("Location: MainMovie.php");
+}
+include_once 'dbconnect.php';
+$result = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $_GET['q'] . "'");
+$movie = mysqli_fetch_assoc($result);
+?>
 
         <ul class="breadcrumb">
             <li><a href="index.php" class="activeLink">Home</a> <span class="divider"></span></li>

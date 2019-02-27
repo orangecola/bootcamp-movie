@@ -1,9 +1,9 @@
-        <?php
-        include 'header.inc';
-        include_once 'dbconnect.php';
-        $resultCarousel = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_carousel IS NOT NULL");
-        $resultMovie = mysqli_query($MySQLiconn, "select * from movie");
-        ?>
+<?php
+include 'header.inc';
+include_once 'dbconnect.php';
+$resultCarousel = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_carousel IS NOT NULL");
+$resultMovie = mysqli_query($MySQLiconn, "select * from movie");
+?>
         <div id="homeCarousel" class="carousel slide">
             <ol class="carousel-indicators">
                 <?php

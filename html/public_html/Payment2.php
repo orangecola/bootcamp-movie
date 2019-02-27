@@ -1,18 +1,18 @@
-        <?php
-        include 'header.inc';
-        include_once 'dbconnect.php';
+<?php
+include 'header.inc';
+include_once 'dbconnect.php';
 
-        //Print error message not working!
-          if(!empty($_SESSION['message1'])) {
-              echo '<h4>'.$_SESSION['message1'].'</h4>';
-          }
-          $UserId = $_SESSION['user'];
-          $check_list = $_SESSION['check_list'];
-          $PaymentMode = $_SESSION['PaymentMode'];
-          $showInfoID = $_SESSION['show_id'];
-          $Name = $_SESSION['name'];
-          $Email = $_SESSION['email'];
-        ?>
+//Print error message not working!
+  if(!empty($_SESSION['message1'])) {
+      echo '<h4>'.$_SESSION['message1'].'</h4>';
+  }
+  $UserId = $_SESSION['user'];
+  $check_list = $_SESSION['check_list'];
+  $PaymentMode = $_SESSION['PaymentMode'];
+  $showInfoID = $_SESSION['show_id'];
+  $Name = $_SESSION['name'];
+  $Email = $_SESSION['email'];
+?>
         <?php
             $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
             $showinfo = mysqli_fetch_assoc($result);

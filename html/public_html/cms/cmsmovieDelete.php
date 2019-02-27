@@ -1,3 +1,7 @@
+<?php
+session_start();
+include_once ("../dbconnect.php");
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,10 +17,6 @@
 <script src="../js/scripts.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<?php 
-session_start();
-include_once ("../dbconnect.php");
-?>
 
 <div class="container-fluid">
 	<div class="row">
@@ -36,8 +36,8 @@ include_once ("../dbconnect.php");
 					<br />
 					<a href="cmsmovie.php"><button class="btn btn-default">Back</button></a>
 				</div>
-			</div>		
-		<?php include 'cmsfooter.inc';?>	
+			</div>
+		<?php include 'cmsfooter.inc';?>
 		</div>
 	</div>
 </div>
