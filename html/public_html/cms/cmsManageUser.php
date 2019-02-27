@@ -1,4 +1,55 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header("Location: index.php");
+    }
+    include_once ("../dbconnect.php");
+    $reclimit = 5; //Set Record Limit
+
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+
+    //Setting the page limit
+    $start = (($page-1) * $reclimit);
+    $sql = "SELECT * FROM user_list";
+    $records = $MySQLiconn->query($sql);
+    $total = $records->num_rows; //Display Num of Row
+    $tpages = ceil($total / $reclimit);
+
+    echo '<script language="javascript">';
+    echo 'document.getElementById("UserEditForm").style.display="none"';
+    echo '</script>';
+
+    $rec = "SELECT user_id, username, user_email, user_role FROM user_list LIMIT $start, $reclimit";
+    $records = $MySQLiconn->query($rec);
+
+    //execute the SQL query and return records
+    $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
+    $userRow = $resultUser->fetch_array();
+    $resultCount = $MySQLiconn->query("select count(*) from user_list");
+
+    if(isset($_GET['delete_id']))
+    {
+        $sql_query=$MySQLiconn->query("DELETE FROM user_list WHERE user_id=".$_GET['delete_id']);
+        mysql_query($sql_query);
+        header("Location: cmsManageUser.php");
+    }
+
+    if(isset($_GET['update_id']))
+    {
+        echo '<script language="javascript">';
+        echo 'document.getElementById("UserEditForm").style.display="block"';
+        echo '</script>';
+
+        $rec2 = "SELECT username, user_email, user_role from user_list where user_id =".$_GET['update_id'];
+        $records2 = $MySQLiconn->query($rec2);
+    }
+?>
+<?php
     // Declare some variable for error message
     $error=false;
     $errorUName=null;
@@ -157,57 +208,7 @@
         <script src="../js/jquery.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/scripts.js"></script>
-        <?php
-            session_start();
-            if(!isset($_SESSION['user']))
-            {
-                header("Location: index.php");
-            }
-            include_once ("../dbconnect.php");
-            $reclimit = 5; //Set Record Limit
 
-            if(isset($_GET['page'])){
-                $page = $_GET['page'];
-            } else {
-                $page = 1;
-            }
-
-            //Setting the page limit
-            $start = (($page-1) * $reclimit);
-            $sql = "SELECT * FROM user_list";
-            $records = $MySQLiconn->query($sql);
-            $total = $records->num_rows; //Display Num of Row
-            $tpages = ceil($total / $reclimit);
-
-            echo '<script language="javascript">';
-            echo 'document.getElementById("UserEditForm").style.display="none"';
-            echo '</script>';
-
-            $rec = "SELECT user_id, username, user_email, user_role FROM user_list LIMIT $start, $reclimit";
-            $records = $MySQLiconn->query($rec);
-
-            //execute the SQL query and return records
-            $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
-            $userRow = $resultUser->fetch_array();
-            $resultCount = $MySQLiconn->query("select count(*) from user_list");
-
-            if(isset($_GET['delete_id']))
-            {
-                $sql_query=$MySQLiconn->query("DELETE FROM user_list WHERE user_id=".$_GET['delete_id']);
-                mysql_query($sql_query);
-                header("Location: cmsManageUser.php");
-            }
-
-            if(isset($_GET['update_id']))
-            {
-                echo '<script language="javascript">';
-                echo 'document.getElementById("UserEditForm").style.display="block"';
-                echo '</script>';
-
-                $rec2 = "SELECT username, user_email, user_role from user_list where user_id =".$_GET['update_id'];
-                $records2 = $MySQLiconn->query($rec2);
-            }
-        ?>
 
         <?php include 'cmsheader.inc';?>
 

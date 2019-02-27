@@ -12,7 +12,7 @@
     $resultMovie = $MySQLiconn->query("select count(*) as numMovie from movie");
     $resultPromotion = $MySQLiconn->query("select count(*) as numPromotion from promotion");
     $resultCinema = $MySQLiconn->query("select count(*) as numCinema from cinema");
-    $resultBooking = $MySQLiconn->query("select count(*) as numBooking from Booking");
+    $resultBooking = $MySQLiconn->query("select count(*) as numBooking from booking");
     $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
     $userRow = $resultUser->fetch_array();
     $resultCount = $MySQLiconn->query("select count(*) from cinema");
