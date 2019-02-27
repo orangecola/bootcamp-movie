@@ -17,8 +17,8 @@
 
         //Filter vaildate email is check email format
 
-            $username = mysqli_real_escape_string($_POST['username']);
-            $upass = mysqli_real_escape_string($_POST['passwd']);
+            $username = $MySQLiconn->real_escape_string($_POST['username']);
+            $upass = $MySQLiconn->real_escape_string($_POST['passwd']);
             $res=$MySQLiconn->query("SELECT * FROM user_list WHERE username='$username' and user_role='Admin'");
             $row = $res->fetch_array();
             if($row['password']==md5($upass))

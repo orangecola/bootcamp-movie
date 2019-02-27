@@ -92,7 +92,7 @@ include_once '../dbconnect.php';
 elseif (isset($_POST['pname'])) {
 
     $image = file_get_contents($_FILES['ppict']['tmp_name']);
-    $image = mysqli_real_escape_string($image);
+    $image = $MySQLiconn->real_escape_string($image);
 
 
     $sql = "insert into promotioninfo (promotionInfo_title,promotionInfo_Description,promotionInfo_image) values('" . $_POST['pname'] . "','" . $_POST['pdesc'] . "','$image ')";

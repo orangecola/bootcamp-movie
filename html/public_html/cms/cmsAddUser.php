@@ -87,8 +87,8 @@
         if ($error == false)
         {
             include_once ("../dbconnect.php");
-            $uname = mysqli_real_escape_string($_POST['userName']);
-            $upass = md5(mysqli_real_escape_string($_POST['userCPassword']));
+            $uname = $MySQLiconn->real_escape_string($_POST['userName']);
+            $upass = md5($MySQLiconn->real_escape_string($_POST['userCPassword']));
             $sql_query=$MySQLiconn->query("INSERT INTO user_list(username, password, user_role, user_email) VALUES
                 ('$uname','$upass','$_POST[userrole]','$_POST[userEmail]')");
             mysql_query($sql_query);

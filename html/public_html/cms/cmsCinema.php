@@ -137,7 +137,7 @@
             if ($_FILES['uploadFile']['name']!="")
             {
                 $image = file_get_contents($_FILES['uploadFile']['tmp_name']);
-                $image = mysqli_real_escape_string($image);
+                $image = $MySQLiconn->real_escape_string($image);
                 $sql_query=$MySQLiconn->query("update cinema set cinema_name='$_POST[cinemaName]' "
                     . ", No_Of_Screen='$_POST[cinemaNoOfScreen]' , cinema_address='$_POST[cinemaAddress]' "
                     . ", cinema_googleMap='$_POST[cinemaGMAP]' , cinema_rows='$_POST[CinemaRow]' "

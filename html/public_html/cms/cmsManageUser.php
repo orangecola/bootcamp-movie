@@ -81,11 +81,11 @@
         if ($error == false)
         {
             include_once ("../dbconnect.php");
-            $uname = mysqli_real_escape_string($_POST['userName']);
+            $uname = $MySQLiconn->real_escape_string($_POST['userName']);
             if (empty($userPassword) && empty($userCPassword))
             {
-                $uname = mysqli_real_escape_string($_POST['userName']);
-                $upass = md5(mysqli_real_escape_string($_POST['userCPassword']));
+                $uname = $MySQLiconn->real_escape_string($_POST['userName']);
+                $upass = md5($MySQLiconn->real_escape_string($_POST['userCPassword']));
                 $sql_query=$MySQLiconn->query("Update user_list set username='$uname', user_role='$_POST[userrole]', user_email='$_POST[userEmail]' where user_id =".$_GET['update_id']);
                 mysql_query($sql_query);
 
@@ -95,8 +95,8 @@
             }
             if (!empty($userPassword) && !empty($userCPassword))
             {
-                $uname = mysqli_real_escape_string($_POST['userName']);
-                $upass = md5(mysqli_real_escape_string($_POST['userCPassword']));
+                $uname = $MySQLiconn->real_escape_string($_POST['userName']);
+                $upass = md5($MySQLiconn->real_escape_string($_POST['userCPassword']));
                 $sql_query=$MySQLiconn->query("Update user_list set username='$uname', user_password='$upass', user_role='$_POST[userrole]', user_email='$_POST[userEmail]' where user_id =".$_GET['update_id']);
                 mysql_query($sql_query);
 

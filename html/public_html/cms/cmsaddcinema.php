@@ -141,7 +141,7 @@
         {
             include_once ("../dbconnect.php");
             $image = file_get_contents($_FILES['uploadFile']['tmp_name']);
-            $image = mysqli_real_escape_string($image);
+            $image = $MySQLiconn->real_escape_string($image);
             $sql_query=$MySQLiconn->query("INSERT INTO cinema(cinema_name, No_Of_Screen, cinema_address, cinema_googleMap, cinema_mrt, cinema_bus, cinema_image, cinema_rows, cinema_column) VALUES
                 ('$_POST[cinemaName]','$_POST[cinemaNoOfScreen]','$_POST[cinemaAddress]','$_POST[cinemaGMAP]','$_POST[BUSToCinema]','$_POST[MRTToCinema]','$image','$_POST[CinemaRow]','$_POST[CinemaColumn]')");
             mysql_query($sql_query);

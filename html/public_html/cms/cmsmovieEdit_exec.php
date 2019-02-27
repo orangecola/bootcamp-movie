@@ -39,7 +39,7 @@ include_once ("../dbconnect.php");
                 }
                 else {
                     $poster = file_get_contents($_FILES['movie_poster']['tmp_name']);
-                    $poster = mysqli_real_escape_string($poster);
+                    $poster = $MySQLiconn->real_escape_string($poster);
                     $sql3 = ", movie_poster='" . $poster . "' ";
                 }
 
@@ -48,7 +48,7 @@ include_once ("../dbconnect.php");
                 }
                 else {
                     $carousel = file_get_contents($_FILES['movie_carousel']['tmp_name']);
-                    $carousel = mysqli_real_escape_string($carousel);
+                    $carousel = $MySQLiconn->real_escape_string($carousel);
                     $sql4 = ", movie_carousel='" . $carousel . "' ";
                 }
 

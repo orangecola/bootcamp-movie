@@ -25,7 +25,7 @@ include_once ("../dbconnect.php");
                 <div class="container">
                     <?php
                     $poster = file_get_contents($_FILES['movie_poster']['tmp_name']);
-                    $poster = mysqli_real_escape_string($poster);
+                    $poster = $MySQLiconn->real_escape_string($poster);
                     $sql1 = "INSERT INTO movie (movie_name, movie_type, movie_cast, movie_director, movie_genre, movie_release, movie_runningTime, movie_distributor, movie_language, movie_synopsis, movie_TNC, movie_trailerLink, movie_websiteLink, movie_poster, movie_carousel) VALUES ";
                     $sql2 = "('" . $_POST['movie_name'] . "', '" . $_POST['movie_type'] . "', '"
                         . $_POST['movie_cast'] . "', '" . $_POST['movie_director'] . "', '"
@@ -37,7 +37,7 @@ include_once ("../dbconnect.php");
 
                     if ($_FILES['movie_carousel']['size'] != 0) {
                         $carousel = file_get_contents($_FILES['movie_carousel']['tmp_name2']);
-                        $carousel = mysqli_real_escape_string($carousel);
+                        $carousel = $MySQLiconn->real_escape_string($carousel);
                         $sql3 = ", '$carousel'";
                     }
                     else {
