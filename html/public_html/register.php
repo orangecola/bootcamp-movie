@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
     }
     //if (mysqli_query("SELECT COUNT(* "))
     if ($okay) {
-        $uname = mysqli_real_escape_string($MySQLiconn, $_POST['name']);       
+        $uname = mysqli_real_escape_string($MySQLiconn, $_POST['name']);
         $upass = md5(mysqli_real_escape_string($MySQLiconn, $_POST['pwd']));
         $hash = md5(rand(0,1000));
         if (mysqli_query($MySQLiconn, "INSERT INTO user_list(username,user_email,password,user_role) VALUES('$uname','$email','$upass','User')")) {
@@ -49,19 +49,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Golden Village</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="images/gv32x32.ico" rel="shortcut icon" />
-
-    </head>
-    <body>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/scripts.js"></script>
         <?php include "header.inc" ?>
             <div class="container">
                 <div class="row">
@@ -83,19 +70,19 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3" for="pwd" name="pwd"><p>Password:</p></label>
-                            <div class="col-md-9">          
+                            <div class="col-md-9">
                                 <input type="password" class="form-control" name="pwd" required>
                                 <span class="text-danger"><?php echo $passwordErr; ?></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3" for="pwd"><p>Password Confirm:</p></label>
-                            <div class="col-md-9">          
+                            <div class="col-md-9">
                                 <input type="password" class="form-control" name="confirmpwd">
                                 <span class="text-danger"><?php echo $confirmPwdErr; ?></span>
                             </div>
                         </div>
-                        <div class="form-group"> 
+                        <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                             </div>

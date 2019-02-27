@@ -22,14 +22,14 @@
         #include 'cmsheader.inc';
         include_once '../dbconnect.php';
         echo"</br>";
-        //Doing of Editing/updating Promo    
+        //Doing of Editing/updating Promo
         if (isset($_POST['id'])) {
             $sql = "UPDATE promotioninfo SET promotionInfo_title='" . $_POST['pname'] . "', promotionInfo_Description='" . $_POST['pdesc'] . "' WHERE promotionInfo_id='" . $_POST['id'] . "'";
             $result = $MySQLiconn->query($sql);
             echo"Your database has been updated</b>";
             echo"</br><button onclick='goBack()'>Back</button>";
         }
-        //Dislaying data to be edited. 
+        //Dislaying data to be edited.
         elseif (isset($_GET['id'])) {
 
             $id = $_GET['id'];
@@ -47,7 +47,7 @@
             <table border='1'>
                 <tr>
                     <td><h4>
-                        Promotion Name : 
+                        Promotion Name :
                     </h4></td>
                     <td>
                         <input type='text' name='pname' required style='width: 500px;' value='" . $row['1'] . "' class='input' required>
@@ -55,26 +55,26 @@
                 </tr>
                  <tr>
                     <td><h4>
-                        Image : 
+                        Image :
                     </h4></td>
                     <td>
-                         <img src='data:image/jpeg;base64," . base64_encode($row['2']) . "'>              
+                         <img src='data:image/jpeg;base64," . base64_encode($row['2']) . "'>
                     </td>
                 </tr>
 
 
                 <tr>
                     <td><h4>
-                        Promotion Description : 
+                        Promotion Description :
                     </h4></td>
                     <td>
                         <textarea name='pdesc' class='input' cols='60' rows='5'  required>" . $row['3'] . "</textarea>
                     </td>
-                    
-               
+
+
                     </tr>
-                
-                
+
+
             </table>
         <input type='submit' value='Edit' class='btn btn-default'><button onclick='goBack()' class='btn btn-default'>Back</button>
         </div>
@@ -91,7 +91,7 @@
 elseif (isset($_POST['pname'])) {
 
     $image = file_get_contents($_FILES['ppict']['tmp_name']);
-    $image = mysql_real_escape_string($image);
+    $image = mysqli_real_escape_string($image);
 
 
     $sql = "insert into promotioninfo (promotionInfo_title,promotionInfo_Description,promotionInfo_image) values('" . $_POST['pname'] . "','" . $_POST['pdesc'] . "','$image ')";

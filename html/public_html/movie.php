@@ -1,16 +1,3 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Golden Village</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="images/gv32x32.ico" rel="shortcut icon" />
-
-    </head>
-    <body>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/scripts.js"></script>
         <?php
         include 'header.inc';
         if (isset($_GET['q']) == "") {
@@ -37,7 +24,7 @@
             <hr />
             <div class="row">
                 <div class="col-md-4 text-center">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($movie['movie_poster']); ?>"> 
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($movie['movie_poster']); ?>">
                     <br /><br />
                     <a class="btn btn-default" href="<?php echo $movie['movie_websiteLink']; ?>">Website</a>
                 </div>
@@ -121,12 +108,12 @@
                             <?php
                             $sql = "SELECT DISTINCT cinema.cinema_id, cinema.cinema_name FROM `cinema` WHERE cinema.cinema_id in (SELECT showinfo.cinema_id FROM showinfo WHERE showinfo.movie_id ='" . $_GET['q'] . "')";
                             $resultCinema = mysqli_query($MySQLiconn, $sql);
-                            
+
                             while ($row = mysqli_fetch_assoc($resultCinema)) {
 
                                 echo '<h4 class="Collapseh4">';
                                 echo '<a data-toggle="collapse" data-parent="#accordion" class="activeLink" href="#collapse'.$row['cinema_id'].'" class="">';
-                                    echo'<span class="glyphicon glyphicon-collapse-down"></span>'.$row['cinema_name']; 
+                                    echo'<span class="glyphicon glyphicon-collapse-down"></span>'.$row['cinema_name'];
                                 echo '</a>';
                             echo'</h4>';
                             }
@@ -134,7 +121,7 @@
                         </div>
                         <div id="collapse" class="panel-collapse collapse">
                             <div class="panel-body"></div>
-                        </div>                        
+                        </div>
                         <?php
                             mysqli_data_seek($resultCinema, 0);
                         while ($row = mysqli_fetch_assoc($resultCinema)) {

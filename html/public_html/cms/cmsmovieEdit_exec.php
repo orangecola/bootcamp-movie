@@ -13,7 +13,7 @@
 <script src="../js/scripts.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<?php 
+<?php
 session_start();
 include_once ("../dbconnect.php");
 ?>
@@ -26,20 +26,20 @@ include_once ("../dbconnect.php");
             <div class="container">
                 <?php
                 $sql1 = "UPDATE movie SET ";
-                $sql2 = "movie_name='". $_POST['movie_name'] . "', movie_type='" . $_POST['movie_type'] . 
-                "', movie_cast='" . $_POST['movie_cast'] . "', movie_director='" . $_POST['movie_director'] . 
-                "', movie_genre='" . $_POST['movie_genre'] . "', movie_release='" . $_POST['movie_release'] . 
-                "', movie_runningTime='" . $_POST['movie_runningTime'] . "', movie_distributor='" . $_POST['movie_distributor'] . 
-                "', movie_language='" . $_POST['movie_language'] . "', movie_synopsis='" . $_POST['movie_synopsis'] . 
-                "', movie_TNC='" . $_POST['movie_TNC'] . "', movie_trailerLink='" . $_POST['movie_trailerLink'] . 
+                $sql2 = "movie_name='". $_POST['movie_name'] . "', movie_type='" . $_POST['movie_type'] .
+                "', movie_cast='" . $_POST['movie_cast'] . "', movie_director='" . $_POST['movie_director'] .
+                "', movie_genre='" . $_POST['movie_genre'] . "', movie_release='" . $_POST['movie_release'] .
+                "', movie_runningTime='" . $_POST['movie_runningTime'] . "', movie_distributor='" . $_POST['movie_distributor'] .
+                "', movie_language='" . $_POST['movie_language'] . "', movie_synopsis='" . $_POST['movie_synopsis'] .
+                "', movie_TNC='" . $_POST['movie_TNC'] . "', movie_trailerLink='" . $_POST['movie_trailerLink'] .
                 "', movie_websiteLink='" . $_POST['movie_websiteLink'] . "' ";
-            
+
                 if ($_FILES['movie_poster']['size'] == 0) {
                     $sql3 = "";
                 }
                 else {
                     $poster = file_get_contents($_FILES['movie_poster']['tmp_name']);
-                    $poster = mysql_real_escape_string($poster);
+                    $poster = mysqli_real_escape_string($poster);
                     $sql3 = ", movie_poster='" . $poster . "' ";
                 }
 
@@ -48,16 +48,16 @@ include_once ("../dbconnect.php");
                 }
                 else {
                     $carousel = file_get_contents($_FILES['movie_carousel']['tmp_name']);
-                    $carousel = mysql_real_escape_string($carousel);
+                    $carousel = mysqli_real_escape_string($carousel);
                     $sql4 = ", movie_carousel='" . $carousel . "' ";
-                }                
+                }
 
 
-                $sql5 = "WHERE movie_id = " . $_GET['q'] . ";" ;   
+                $sql5 = "WHERE movie_id = " . $_GET['q'] . ";" ;
                 $query = $sql1.$sql2.$sql3.$sql4.$sql5;
 
                 if ($MySQLiconn->query($query)) {
-                    echo "<h1>Updated successfully</h1>";   
+                    echo "<h1>Updated successfully</h1>";
                 }
                 else {
                     echo "<h1>Update was not successful</h1>";

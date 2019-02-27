@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 
 <!-- Declare some variable in php -->
-<?php 
+<?php
     session_start();
     include_once '../dbconnect.php';
 
@@ -22,11 +22,11 @@ and open the template in the editor.
     //Check if submit button is being pressed a not
     if (isset($_POST["submit"]))
     {
-        
+
         //Filter vaildate email is check email format
-        
-            $username = mysql_real_escape_string($_POST['username']);
-            $upass = mysql_real_escape_string($_POST['passwd']);
+
+            $username = mysqli_real_escape_string($_POST['username']);
+            $upass = mysqli_real_escape_string($_POST['passwd']);
             $res=$MySQLiconn->query("SELECT * FROM user_list WHERE username='$username' and user_role='Admin'");
             $row = $res->fetch_array();
             if($row['password']==md5($upass))
@@ -41,9 +41,9 @@ and open the template in the editor.
                 <?php
             }
     }
-    
-?>
 
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -54,7 +54,7 @@ and open the template in the editor.
         <link href="../css/style.css" rel="stylesheet">
         <link href="../images/gv32x32.ico" rel="shortcut icon" />
     </head>
-    
+
     <body>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/bootstrap.min.js"></script>
@@ -76,20 +76,20 @@ and open the template in the editor.
         </nav>
         <div class="container">
             <div class="col-md-3 col-sm-3">
-                
+
             </div>
-      
+
             <div class="col-md-11 col-sm-11">
                 <form class="form-horizontal" name="registerForm" method="post">
                     <div class="loginFormHeader">
                         <h2 class="loginFormH2">Golden Village CMS Site</h2>
                         <hr />
                     </div>
-                    
+
                     <div class="loginForm">
                         <h2 class="loginFormH2_login">Login Account</h2>
-                    
-                                            
+
+
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="email">Username: </label>
                             <div class="col-sm-9">
@@ -98,8 +98,8 @@ and open the template in the editor.
                                 <?php if ($error) {echo "<p class='text-danger'>$Errorusername</p>";} else echo "<p class='text-danger'></p>"?>
                             </div>
                         </div>
-                        
-                    
+
+
                         <div class="form-group">
                             <label class="control-label col-sm-3" for="email">Password: </label>
                             <div class="col-sm-9">
@@ -108,7 +108,7 @@ and open the template in the editor.
                                 <?php if ($error) {echo "<p class='text-danger'>$errorPasswd</p>";} else echo "<p class='text-danger'></p>"?>
                             </div>
                         </div>
-                    
+
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-md-5">
                                 <button type="submit" name="submit" class="btn btn-primary">Login</button>

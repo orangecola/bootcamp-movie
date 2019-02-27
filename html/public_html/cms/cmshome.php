@@ -1,18 +1,4 @@
- <!doctype html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>CMS Main</title>
-      <link href="../css/bootstrap.min.css" rel="stylesheet">
-      <link href="../css/style.css" rel="stylesheet">
-      <link href="../images/gv32x32.ico" rel="shortcut icon" />
-    
-    </head>
-    <body>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/scripts.js"></script>
-        
+
         <?php
             session_start();
             include_once ("../dbconnect.php");
@@ -22,7 +8,7 @@
             }
             //execute the SQL query and return records
             $resultUser = $MySQLiconn->query("SELECT  ( SELECT COUNT(*) FROM   user_list ) AS numUser,
-            (SELECT COUNT(*) FROM   user_list where user_role = 'admin') AS numUserAdmin, 
+            (SELECT COUNT(*) FROM   user_list where user_role = 'admin') AS numUserAdmin,
             (SELECT COUNT(*) FROM   user_list where user_role = 'user') AS numUserReg FROM dual");
             $resultMovie = $MySQLiconn->query("select count(*) as numMovie from movie");
             $resultPromotion = $MySQLiconn->query("select count(*) as numPromotion from promotion");
@@ -30,8 +16,23 @@
             $resultBooking = $MySQLiconn->query("select count(*) as numBooking from Booking");
 			$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
             $userRow = $resultUser->fetch_array();
-            $resultCount = $MySQLiconn->query("select count(*) from cinema");   
+            $resultCount = $MySQLiconn->query("select count(*) from cinema");
         ?>
+<!doctype html>
+   <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <title>CMS Main</title>
+     <link href="../css/bootstrap.min.css" rel="stylesheet">
+     <link href="../css/style.css" rel="stylesheet">
+     <link href="../images/gv32x32.ico" rel="shortcut icon" />
+
+   </head>
+   <body>
+       <script src="../js/jquery.min.js"></script>
+       <script src="../js/bootstrap.min.js"></script>
+       <script src="../js/scripts.js"></script>
+
       <?php include 'cmsheader.inc';?>
 
       <h1>Summary</h1>
@@ -50,12 +51,12 @@
                     "<tr class='success'>
                         <td><p>User</p></td>
                         <td><p>Total : {$row['numUser']} User</p>
-                        <p>Total Admin User : {$row['numUserAdmin']} User</p>  
-                        <p>Total Registered User : {$row['numUserReg']} User</p>   
+                        <p>Total Admin User : {$row['numUserAdmin']} User</p>
+                        <p>Total Registered User : {$row['numUserReg']} User</p>
                         </td>
                     </tr>\n";
                 }
-                
+
                 while( $row = $resultMovie->fetch_array()){
                     echo
                     "<tr class='success'>
@@ -63,7 +64,7 @@
                         <td><p>{$row['numMovie']} Movie</p></td>
                     </tr>\n";
                 }
-                
+
                 while( $row = $resultPromotion->fetch_array()){
                     echo
                     "<tr class='success'>
@@ -71,7 +72,7 @@
                         <td><p>{$row['numPromotion']} Promotion</p></td>
                     </tr>\n";
                 }
-                
+
                 while( $row = $resultCinema->fetch_array()){
                     echo
                     "<tr class='success'>
@@ -79,7 +80,7 @@
                         <td><p>{$row['numCinema']} Cinema</p></td>
                     </tr>\n";
                 }
-                
+
                 while( $row = $resultBooking->fetch_array()){
                     echo
                     "<tr class='success'>
@@ -92,6 +93,6 @@
       </table>
           <?php include 'cmsfooter.inc';?>
       </div>
-      
+
     </body>
     </html>

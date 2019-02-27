@@ -5,7 +5,7 @@
     </head>
     <body>
         <footer>
-            <label class="footerText">&#169; 2015 Singapore Insititute Of Technology ICT 1004</label>
+            <label class="footerText">&#169; SEC Consult Bootcamp</label>
         </footer>
         <?php
         // put your code here

@@ -1,3 +1,10 @@
+
+<?php
+session_start();
+include_once ("../dbconnect.php");
+$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
+$userRow = $resultUser->fetch_array();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,13 +19,6 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/scripts.js"></script>
 <script src="../http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-<?php 
-session_start();
-include_once ("../dbconnect.php");
-$resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
-$userRow = $resultUser->fetch_array();
-?>
 
 <script type="text/javascript">
 function delete_movie(id) {
@@ -56,18 +56,18 @@ function delete_movie(id) {
 							$i=1;
 							while ($row = $result->fetch_array()) {
 								echo "<tr>";
-								echo "<td class='col-md-2'>";								
+								echo "<td class='col-md-2'>";
 								echo "<a href='cmsmovieEdit.php?q=" . $row['movie_id'] . "'>";
 								// echo "<button class='btn btn-primary'>Edit</button>";
 								echo "Edit";
-								echo "</a><br />";								
+								echo "</a><br />";
 								echo "<a onClick=delete_movie(". $row['movie_id'] . ")>";
 								// echo "<button class='btn btn-delete'>Delete</button>";
 								echo "Delete";
 								echo "</a>";
 								echo "</td>";
 								//echo "<td class='col-md-1'>" . $i . "</td>";
-								echo "<td class='col-md-2'><p>" . $row['movie_name'] . "</td></p>";					
+								echo "<td class='col-md-2'><p>" . $row['movie_name'] . "</td></p>";
 								echo "<td class='col-md-2'><p>" . $row['movie_type'] . "</p></td>";
 								echo "<td class='col-md-2'><p>" . $row['movie_cast'] . "</p></td>";
 								echo "<td class='col-md-1'><p>" . $row['movie_director'] . "</p></td>";
@@ -91,10 +91,10 @@ function delete_movie(id) {
 					</table>
 					<br /> <br />
 				</div>
-			
 
-		
-		<?php include 'cmsfooter.inc';?>	
+
+
+		<?php include 'cmsfooter.inc';?>
 		</div>
 	</div>
 

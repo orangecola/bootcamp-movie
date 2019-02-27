@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>CMS Main</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/style.css" rel="stylesheet">
-        <link href="../images/gv32x32.ico" rel="shortcut icon" />
 
-
-    </head>
-    <body>
-        <script src="../js/jquery.min.js"></script>
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/scripts.js"></script>
 		<?php
 		session_start();
 		include_once '../dbconnect.php';
@@ -25,7 +6,26 @@ and open the template in the editor.
 		$userRow = $resultUser->fetch_array();
 		include 'cmsheader.inc';
 		?>
+    <!DOCTYPE html>
+    <!--
+    To change this license header, choose License Headers in Project Properties.
+    To change this template file, choose Tools | Templates
+    and open the template in the editor.
+    -->
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>CMS Main</title>
+            <link href="../css/bootstrap.min.css" rel="stylesheet">
+            <link href="../css/style.css" rel="stylesheet">
+            <link href="../images/gv32x32.ico" rel="shortcut icon" />
 
+
+        </head>
+        <body>
+            <script src="../js/jquery.min.js"></script>
+            <script src="../js/bootstrap.min.js"></script>
+            <script src="../js/scripts.js"></script>
         <h1>Promotion Information Page</h1>
         <div class="promotiontable">
             <?php
@@ -45,7 +45,7 @@ and open the template in the editor.
                 echo"</br><table border='2' class='summary' align='right'><tr><th><h4>Action</h4></th><th><h4>Promotion Name</h4></th><th><h4>Promotion Detail</h4></th><th><h4>Promotion Image</h4></th></tr><tr class='success'>";
                 $row = mysqli_fetch_array($result);
                 echo "<td>";
-                ?> <a onClick="return confirm('Are you sure you wish to delete this entry ?')" 
+                ?> <a onClick="return confirm('Are you sure you wish to delete this entry ?')"
                 <?php
                 echo"href='cmspromo.php?id=" . $row['0'] . "' >Delete</a></br></br><a href='cmspprocess.php?id=" . $row['0'] . "'>Update</a></td>"
                 . "<td><p>" . $row['1'] . "</p></td>"
@@ -60,7 +60,7 @@ and open the template in the editor.
                    ?>
                    <div class="container">
 
-                        
+
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
@@ -73,22 +73,22 @@ and open the template in the editor.
                                     <div class="modal-body">
                                         <div class="container">
                                         <form method="POST" action="cmspprocess.php" enctype="multipart/form-data">
-                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Promotion Name :</span> 
+                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Promotion Name :</span>
                                             </br>
                                             <input type='text' name='pname' style='width: 500px;' class='input'>
                                             </br>
-                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Image :</span> 
+                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Image :</span>
                                             </br>
-                                            <input type="file" name="ppict" id="ppict">              
+                                            <input type="file" name="ppict" id="ppict">
                                             </br>
-                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Promotion Description :</span> 
+                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Promotion Description :</span>
                                             </br>
                                             <textarea name='pdesc' class='input' cols="75" rows='10'></textarea>
                                             </br>
 
                                             </br>
 
-                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Cinema Affected :</span> 
+                                            <span style="margin-bottom:0; color: white; margin-right: 1%">Cinema Affected :</span>
                                             </br>
                                             <?php
                                             include_once '../dbconnect.php';
@@ -123,16 +123,16 @@ and open the template in the editor.
                     <ul class="pagination pagination-lg">
                     <?php
                     }
-                    
+
                     else{
-                       
+
 
                 $sql = "SELECT * FROM promotioninfo limit 15 offset 0  ";
                 $result = $MySQLiconn->query($sql);
                 echo"</br><table border='2' class='summary' align='right'><tr><th><h4>Action</h4></th><th><h4>Promotion Name</h4></th><th><h4>Promotion Detail</h4></th><th><h4>Promotion Image</h4></th></tr><tr class='success'>";
                 $row = mysqli_fetch_array($result);
                 echo "<td>";
-                ?> <a onClick="return confirm('Are you sure you wish to delete this entry ?')" 
+                ?> <a onClick="return confirm('Are you sure you wish to delete this entry ?')"
                 <?php
                 echo"href='cmspromo.php?id=" . $row['0'] . "' >Delete</a></br></br><a href='cmspprocess.php?id=" . $row['0'] . "'>Update</a></td>"
                 . "<td><p>" . $row['1'] . "</p></td>"
@@ -163,13 +163,13 @@ and open the template in the editor.
                                             <input type='text' name='pname' class="input" class='input'>
 
                                             <p style="margin-bottom:0;">Image :</p>
-        
-                                            <input type="file" name="ppict" id="ppict">              
-                                   
+
+                                            <input type="file" name="ppict" id="ppict">
+
                                             <p style="margin-bottom:0;">Promotion Description :</p>
-                                      
+
                                             <textarea name='pdesc' class="input" rows="10" cols="79"></textarea>
-                                 
+
 
                                             </br>
 
@@ -208,9 +208,9 @@ and open the template in the editor.
                     <ul class="pagination pagination-lg">
                     <?php
                     }
-                    
-                    
-                    
+
+
+
                     $num_results = "SELECT COUNT(*) FROM promotioninfo";
                     $result = $MySQLiconn->query($num_results);
                     $row = mysqli_fetch_array($result);
@@ -219,7 +219,7 @@ and open the template in the editor.
 
                         echo"<li><a href='?page=$i'>$i</a></li>";
                     };
-                   
+
                     ?>
 
                 </ul>

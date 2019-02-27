@@ -1,16 +1,3 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Golden Village</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
-        <link href="images/gv32x32.ico" rel="shortcut icon" />
-
-    </head>
-    <body>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/scripts.js"></script>
         <?php
         include 'header.inc';
         if (isset($_GET['q']) == "") {
@@ -85,11 +72,11 @@
                             <?php
                             $sql = "SELECT DISTINCT showInfo_date from showinfo where cinema_id = '".$_GET['q']."'";
                             $resultDate = mysqli_query($MySQLiconn, $sql);
-                            
+
                             while ($date = mysqli_fetch_assoc($resultDate)) {
                                 echo '<h4 class="Collapseh4">';
                                 echo '<a data-toggle="collapse" data-parent="#accordion" class="activeLink" href="#collapse'.$date['showInfo_date'].'" class="">';
-                                    echo'<span class="glyphicon glyphicon-collapse-down"></span>'.$date['showInfo_date']; 
+                                    echo'<span class="glyphicon glyphicon-collapse-down"></span>'.$date['showInfo_date'];
                                 echo '</a>';
                             echo'</h4>';
                             }
@@ -97,7 +84,7 @@
                         </div>
                         <div id="collapse" class="panel-collapse collapse">
                             <div class="panel-body"></div>
-                        </div>                        
+                        </div>
                         <?php
                             mysqli_data_seek($resultDate, 0);
                         while ($date = mysqli_fetch_assoc($resultDate)) {

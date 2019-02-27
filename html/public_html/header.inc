@@ -6,7 +6,20 @@ if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Golden Village</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="images/gv32x32.ico" rel="shortcut icon" />
 
+    </head>
+    <body>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -30,7 +43,7 @@ if(session_status() == PHP_SESSION_NONE) {
                         <li <?php if (strpos($directoryURI,'MainCinema.php') !== false) {echo 'class="active"';} ?>><a href="MainCinema.php">Cinema List</a></li>
                         <?php
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if (strpos($directoryURI,'cinema.php') !== false) {   
+                            if (strpos($directoryURI,'cinema.php') !== false) {
                                 if (strpos($_GET['q'], $row['cinema_id']) !== false) {
                                         echo '<li class="active"><a href="cinema.php?q='.$row['cinema_id'].'">'.$row['cinema_name'].'</a></li>';
                                     }
@@ -45,10 +58,10 @@ if(session_status() == PHP_SESSION_NONE) {
 ?>
                     </ul>
                 </li>
-                <li <?php if (strpos($directoryURI,'MainPromotion.php') !== false) {echo 'class="active"';}?>><a href="MainPromotion.php"><span class="glyphicon glyphicon-usd"></span>Promotions</a></li>                
+                <li <?php if (strpos($directoryURI,'MainPromotion.php') !== false) {echo 'class="active"';}?>><a href="MainPromotion.php"><span class="glyphicon glyphicon-usd"></span>Promotions</a></li>
             </ul>
-            <?php 
-            if(isset($_SESSION['name'])!= '') { 
+            <?php
+            if(isset($_SESSION['name'])!= '') {
                 echo '<ul class="nav navbar-nav navbar-right"><li><p class="navbar-text">Welcome, '.$_SESSION['name'].' | <a href="logout.php?logout">Logout</a></p></li></ul>';
             }
             else {
@@ -65,13 +78,13 @@ if(session_status() == PHP_SESSION_NONE) {
                                     <input type="password" class="form-control" name="pwd" placeholder="Password" required>
                                 </div>
                                 <button name="submit" type="submit" class="btn btn-primary">Sign In</button>
-                                <p><a href="register.php">Register</a></p>    
+                                <p><a href="register.php">Register</a></p>
                             </form>
-                            
+
                         </div>
                     </li>
                 </ul>
-                '; 
+                ';
             }
 ?>
         </div><!--/.nav-collapse -->
