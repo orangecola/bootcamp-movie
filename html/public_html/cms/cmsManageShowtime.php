@@ -1,4 +1,59 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header("Location: index.php");
+    }
+    include_once ("../dbconnect.php");
+    $reclimit = 50; //Set Record Limit
+
+    if(isset($_GET['page'])){
+        $page = $_GET['page'];
+    } else {
+        $page = 1;
+    }
+
+    //Setting the page limit
+    $start = (($page-1) * $reclimit);
+    $sql = "SELECT * FROM showInfo";
+    $records = $MySQLiconn->query($sql);
+    $total = $records->num_rows; //Display Num of Row
+    $tpages = ceil($total / $reclimit);
+
+
+    $rec = "SELECT s.showInfo_id, s.showInfo_date, s.showInfo_time, c.cinema_name, m.movie_name
+            FROM showinfo s inner join cinema c
+            on s.cinema_id = c.cinema_id
+            inner join movie m
+            on s.movie_id = m.movie_id LIMIT $start, $reclimit";
+    $records = $MySQLiconn->query($rec);
+
+    //execute the SQL query and return records
+    $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
+    $userRow = $resultUser->fetch_array();
+    $resultCount = $MySQLiconn->query("select count(*) from showinfo");
+
+    if(isset($_GET['delete_id']))
+    {
+        $sql_query=$MySQLiconn->query("DELETE FROM showInfo WHERE showInfo_id=".$_GET['delete_id']);
+        mysql_query($sql_query);
+        header("Location: cmsManageShowtime.php");
+    }
+
+    if(isset($_GET['update_id']))
+    {
+        echo '<script language="javascript">';
+        echo 'document.getElementById("ShowInfoEditForm").style.display="block"';
+        echo '</script>';
+
+        $rec2 = "SELECT s.showInfo_date, s.showInfo_time, c.cinema_name, m.movie_name from showInfo s
+                Inner join cinema c on c.cinema_id = s.cinema_id
+                Inner join movie m on m.movie_id = s.movie_id
+                where s.showInfo_id =".$_GET['update_id'];
+        $records2 = $MySQLiconn->query($rec2);
+    }
+?>
+<?php
     include_once ("../dbconnect.php");
     // Declare some variable for error message
     $error=false;
@@ -124,61 +179,7 @@
     </head>
 
     <body onload="onload()">
-        <?php
-            session_start();
-            if(!isset($_SESSION['user']))
-            {
-                header("Location: index.php");
-            }
-            include_once ("../dbconnect.php");
-            $reclimit = 50; //Set Record Limit
 
-            if(isset($_GET['page'])){
-                $page = $_GET['page'];
-            } else {
-                $page = 1;
-            }
-
-            //Setting the page limit
-            $start = (($page-1) * $reclimit);
-            $sql = "SELECT * FROM showInfo";
-            $records = $MySQLiconn->query($sql);
-            $total = $records->num_rows; //Display Num of Row
-            $tpages = ceil($total / $reclimit);
-
-
-            $rec = "SELECT s.showInfo_id, s.showInfo_date, s.showInfo_time, c.cinema_name, m.movie_name
-                    FROM showinfo s inner join cinema c
-                    on s.cinema_id = c.cinema_id
-                    inner join movie m
-                    on s.movie_id = m.movie_id LIMIT $start, $reclimit";
-            $records = $MySQLiconn->query($rec);
-
-            //execute the SQL query and return records
-            $resultUser = $MySQLiconn->query("SELECT * FROM user_list WHERE user_id=".$_SESSION['user']);
-            $userRow = $resultUser->fetch_array();
-            $resultCount = $MySQLiconn->query("select count(*) from showinfo");
-
-            if(isset($_GET['delete_id']))
-            {
-                $sql_query=$MySQLiconn->query("DELETE FROM showInfo WHERE showInfo_id=".$_GET['delete_id']);
-                mysql_query($sql_query);
-                header("Location: cmsManageShowtime.php");
-            }
-
-            if(isset($_GET['update_id']))
-            {
-                echo '<script language="javascript">';
-                echo 'document.getElementById("ShowInfoEditForm").style.display="block"';
-                echo '</script>';
-
-                $rec2 = "SELECT s.showInfo_date, s.showInfo_time, c.cinema_name, m.movie_name from showInfo s
-                        Inner join cinema c on c.cinema_id = s.cinema_id
-                        Inner join movie m on m.movie_id = s.movie_id
-                        where s.showInfo_id =".$_GET['update_id'];
-                $records2 = $MySQLiconn->query($rec2);
-            }
-        ?>
 
         <?php include 'cmsheader.inc';?>
 
