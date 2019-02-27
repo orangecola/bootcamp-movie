@@ -1,4 +1,10 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['user']))
+    {
+        header("Location: index.php");
+    }
+    include_once ("../dbconnect.php");
     // Declare some variable for error message
     $error=false;
     $errorCName=null;
@@ -270,12 +276,7 @@
 
 
         <?php
-            session_start();
-            if(!isset($_SESSION['user']))
-            {
-                header("Location: index.php");
-            }
-            include_once ("../dbconnect.php");
+
             $reclimit = 5; //Set Record Limit
 
             if(isset($_GET['page'])){
