@@ -1,9 +1,9 @@
 <?php
-include 'header.inc';
 if (!isset($_SESSION['user'])) {
     header("Location: MainMovie.php");
 }
 include_once 'dbconnect.php';
+include 'header.inc';
 $showInfoID = $_GET['q'];
 echo $showInfoID;
 $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
