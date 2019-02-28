@@ -1,6 +1,6 @@
 version: '3'
 services:
-        web:
+        html:
                 build:
                         context: ./html
                         args:
@@ -10,6 +10,7 @@ services:
                                 - DBPASSWORD=$DBPASSWORD
                 ports:
                         - "80:80"
+                        - "443:443"  
                 links:
                         - sql
         sql:
