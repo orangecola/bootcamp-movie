@@ -1,8 +1,11 @@
 <?php
+if(session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+include_once 'dbconnect.php';
 if (!isset($_SESSION['user'])) {
     header("Location: MainMovie.php");
 }
-include_once 'dbconnect.php';
 include 'header.inc';
 $showInfoID = $_GET['q'];
 echo $showInfoID;

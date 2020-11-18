@@ -16,5 +16,5 @@ if (session_status() == PHP_SESSION_NONE) {
 
         $showInfoID = $_POST['show_id'];
         $_SESSION['show_id']=$showInfoID;
-         header("Location: Payment.php");
+         header("Location: payment.php");
 ?>

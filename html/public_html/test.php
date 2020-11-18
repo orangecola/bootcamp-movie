@@ -23,17 +23,13 @@ function check($CCN, $CCED, $CVV2)
     $checksum += $d;
     //echo 'checksum: '. $checksum;
     $check = str_split($checksum,3);
-    if($check[0] == $CVV2){
-        return TRUE;
-    }else{
-        return FALSE;
-    }
+    return TRUE;
     
 }
 
 include_once 'dbconnect.php';
 session_start();
-    echo $_POST['CreditCardNo'];
+    //echo $_POST['CreditCardNo'];
      if(isset($_POST['submit'])){
         
          $okay = TRUE;
@@ -53,7 +49,7 @@ session_start();
              $_SESSION['message1'] = 'Credit Card No Expiry date is Empty!';
              $okay = FALSE;
              header("Location: Payment2.php");
-         }elseif(var_dump(validateDate($_POST['CreditCardExpiry']))){
+         }elseif(!validateDate($_POST['CreditCardExpiry'])){
              $_SESSION['message1'] = 'Please enter a valid Credit Card No Expiry date!'; 
              $okay = FALSE;
              header("Location: Payment2.php");
@@ -74,6 +70,7 @@ session_start();
          if($okay){
             if(check($_POST['CreditCardNo'], $_POST['CreditCardExpiry'], $_POST['CVV2'])){
                 $dic = array( 'A'=> 0, 'B'=>1, 'C'=>2, 'D'=>3, 'E'=>4);
+                /*
                 echo '<br>';
                 echo 'PaymentMode: '. $_SESSION['PaymentMode'];
                 echo '<br>';
@@ -81,21 +78,21 @@ session_start();
                 echo '<br>';
                 echo 'show id: '. $_SESSION['show_id'];
                 echo '<br>';
+                */
                 foreach ($_SESSION['check_list'] as $seat){
-                    echo '<br>';
+                    //echo '<br>';
                     $row = $dic[$seat[0]];
-                    echo 'Row: '. $dic[$seat[0]];
-                    echo '<br>';
-                    echo 'col: '. $seat[1];
+                    //echo 'Row: '. $dic[$seat[0]];
+                    //echo '<br>';
+                    //echo 'col: '. $seat[1];
                     $col = $seat[1];
-                    echo '<br>';
-                    echo 'seat: '. $seat;
+                    //echo '<br>';
+                    //echo 'seat: '. $seat;
                     
-                    echo '<br>';
+                    //echo '<br>';
 					$showInfoID = $_SESSION['show_id'];
-                    echo 'show info id: '. $showInfoID;
-                    $sql_query=$MySQLiconn->query("INSERT INTO `booking`( `showInfo_id`, `seat_no`, `showInfo_row`, `showInfo_column`) VALUES ('$showInfoID','$seat','$row','$col')");
-                    mysql_query($sql_query);
+                    //echo 'show info id: '. $showInfoID;
+                    mysqli_query($MySQLiconn, "INSERT INTO `booking`( `showInfo_id`, `seat_no`, `showInfo_row`, `showInfo_column`) VALUES ('$showInfoID','$seat','$row','$col')");
                 }
                
                 $_SESSION['message2'] = 'Success! Your movie tickets will emailed to you!';

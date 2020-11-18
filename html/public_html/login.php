@@ -32,7 +32,10 @@ if (isset($_POST["submit"])) {
         } else {
             $passwordErr = "Incorrect Username/Password or Account has not been activated yet";
             ?>
-            <script>alert('Incorrect Password or Username');</script>
+            <script>
+            alert('Incorrect Password or Username');
+            window.location.href="/";
+            </script>
  
             <?php
         }
