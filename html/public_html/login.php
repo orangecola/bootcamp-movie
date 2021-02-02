@@ -25,6 +25,8 @@ if (isset($_POST["submit"])) {
         $res = mysqli_query($MySQLiconn, "SELECT * FROM user_list WHERE user_email='$username' and user_role='User'");
         $row = mysqli_fetch_array($res);
         if ($row['password'] == md5($upass)) {
+            session_regenerate_id();
+            $_SESSION=array();
             $_SESSION['user'] = $row['user_id'];
             $_SESSION['name'] = $row['username'];
             $_SESSION['email'] = $row['user_email'];

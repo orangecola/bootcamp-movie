@@ -4,7 +4,8 @@ if (isset($_GET['q']) == "") {
     header("Location: MainMovie.php");
 }
 include_once 'dbconnect.php';
-$result = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $_GET['q'] . "'");
+$q = mysqli_real_escape_string($MySQLiconn, $_GET['q']);
+$result = mysqli_query($MySQLiconn, "SELECT * FROM `movie` WHERE movie_id ='" . $q . "'");
 $movie = mysqli_fetch_assoc($result);
 ?>
 

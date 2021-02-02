@@ -1,6 +1,7 @@
 version: '3'
 services:
         html:
+                image: html:fix
                 build:
                         context: ./html
                         args:
@@ -9,11 +10,11 @@ services:
                                 - DBUSERNAME=root
                                 - DBPASSWORD=$DBPASSWORD
                 ports:
-                        - "80:80"
                         - "443:443"  
                 links:
                         - sql
         sql:
+                image: sql:fix
                 build:
                         context: ./sql
                         args:

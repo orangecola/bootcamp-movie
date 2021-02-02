@@ -8,7 +8,6 @@ if (!isset($_SESSION['user'])) {
 }
 include 'header.inc';
 $showInfoID = $_GET['q'];
-echo $showInfoID;
 $result = mysqli_query($MySQLiconn, "SELECT * FROM `showinfo` WHERE showInfo_id ='" . $showInfoID . "'");
 $showinfo = mysqli_fetch_assoc($result);
 
