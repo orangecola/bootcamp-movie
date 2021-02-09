@@ -128,9 +128,8 @@ $cinema = mysqli_fetch_assoc($result3);
                   $bookedseats = array();
                   if( count($bookedS) > 0){
                      while ($seatNo = mysqli_fetch_assoc($bookedS)) {
-                      //echo $seatNo['seat_no'];
-                      //echo '<br>';
-                      array_push($bookedseats,$seatNo['seat_no']);
+                      $compiledSeat = $dic[$seatNo['showInfo_row']].$seatNo['showInfo_column'];
+                      array_push($bookedseats,$compiledSeat);
                   }
                   }
 

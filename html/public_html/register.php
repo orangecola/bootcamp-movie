@@ -37,9 +37,6 @@ if (isset($_POST['submit'])) {
         $upass = md5(mysqli_real_escape_string($MySQLiconn, $_POST['pwd']));
         $hash = md5(rand(0,1000));
         if (mysqli_query($MySQLiconn, "INSERT INTO user_list(username,user_email,password,user_role) VALUES('$uname','$email','$upass','User')")) {
-            ?>
-            <script>alert('Successfully registered!');</script>
-            <?php
             header("Location: index.php");
         } else {
             ?>

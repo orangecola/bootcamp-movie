@@ -92,7 +92,7 @@ session_start();
                     //echo '<br>';
 					$showInfoID = $_SESSION['show_id'];
                     //echo 'show info id: '. $showInfoID;
-                    mysqli_query($MySQLiconn, "INSERT INTO `booking`( `showInfo_id`, `seat_no`, `showInfo_row`, `showInfo_column`) VALUES ('$showInfoID','$seat','$row','$col')");
+                    mysqli_query($MySQLiconn, "INSERT INTO booking(showInfo_id, showInfo_row, showInfo_column) VALUES ($showInfoID,$row,$col)");
                 }
                
                 $_SESSION['message2'] = 'Success! Your movie tickets will emailed to you!';
